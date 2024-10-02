@@ -1,5 +1,12 @@
-# android file list server
-# 安卓 Http 文件列表服务器 可文件上传 下载 app下载
-# 
-# 本应用通过HTTP协议传输文件，可以在不同平台上上传、下载文件
-# This application transfers files through HTTP protocol, which can upload and download files on different platforms
+## android file list server
+## 安卓 Http 文件列表服务器 
+可文件上传 下载 app下载
+
+### 已适配到Android 11+
+
+依赖更新
+- support包 迁移到 androidx 库
+- XXPermission更新
+
+优化
+- 优化了第一次打开时授权后的应用表现
