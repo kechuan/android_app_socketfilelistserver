@@ -1,28 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="setting_name">Setting</string><!-- 设置 -->
+    <string name="setting_name">Setting</string><!-- 设置 -->
     <string name="app_name">LAN Share</string>
     <string name="off">Off</string><!-- 关闭 -->
-	<string name="on">On</string><!-- 开启 -->
-	<string name="status">Status</string><!-- 状态 -->
-	<string name="speed">Speed</string><!-- 速度 -->
-	<string name="addres">Addres</string><!-- 地址 -->
-	<string name="log">Log</string><!-- 日志 -->
+    <string name="on">On</string><!-- 开启 -->
+    <string name="status">Status</string><!-- 状态 -->
+    <string name="speed">Speed</string><!-- 速度 -->
+    <string name="address">Address</string><!-- 地址 -->
+    <string name="log">Log</string><!-- 日志 -->
     <string name="exit">Exit</string><!-- 退出 -->
-	<string name="confirm">Confirm</string><!-- 确定 -->
-	<string name="cancel">Cancel</string><!-- 取消 -->
-	<string name="delete">Delete</string><!-- 删除 -->
-	<string name="config_basedir">BaseDir</string><!-- 基础目录 -->
-	
-	<string name="server_start">Server Start</string><!-- 启动服务器 -->
-	<string name="server_end">Server Stop</string><!-- 停止服务器 -->
-	<string name="server_exception">Server Exception</string><!-- 服务器异常 -->
-	<string name="write_successful">Write Successful</string><!-- 写入成功 -->
-	<string name="copy_successful">Copy Successful</string><!-- 复制成功 -->
-	<string name="share_link">Share Link</string><!-- 分享连接 -->
-	<string name="file_already_exist">File Already Exist</string><!-- 文件已经存在 -->
-	<string name="no_write_permission">No Write Permission</string><!-- 没有写入权限 -->
-	<string name="shooting">Shooting</string><!-- 拍摄 -->
-	<string name="select_imaeg">Select Image</string><!-- 选择图片 -->
-	<string name="save">Save</string><!-- 保存 -->
+    <string name="confirm">Confirm</string><!-- 确定 -->
+    <string name="cancel">Cancel</string><!-- 取消 -->
+    <string name="delete">Delete</string><!-- 删除 -->
+    <string name="config_basedir">BaseDir</string><!-- 基础目录 -->
+
+    <string name="server_start">Server Start</string><!-- 启动服务器 -->
+    <string name="server_end">Server Stop</string><!-- 停止服务器 -->
+    <string name="server_exception">Server Exception</string><!-- 服务器异常 -->
+    <string name="write_successful">Write Successful</string><!-- 写入成功 -->
+    <string name="copy_successful">Copy Successful</string><!-- 复制成功 -->
+    <string name="share_link">Share Link</string><!-- 分享连接 -->
+    <string name="file_already_exist">File Already Exist</string><!-- 文件已经存在 -->
+    <string name="no_write_permission">No Write Permission</string><!-- 没有写入权限 -->
+    <string name="shooting">Shooting</string><!-- 拍摄 -->
+    <string name="select_image">Select Image</string><!-- 选择图片 -->
+    <string name="save">Save</string> <!-- 保存 -->
+    <string name="save_setting">Save Setting</string>
+
+    <string name="copy_link">Copy link</string>
+    <string name="all_lan_device_address">All Lan Device Address</string>
+
+    <string name="copy_ipv6_link_menu">Copy IPV6 Link Menu</string>
+    <string name="share_ipv6_link_menu">Share IPV6 Link Menu</string>
+    <string name="this_phone_IPV6_local_address_menu">This Phone IPV6 Local AddressMenu</string>
+    <string name="clear_res_menu">clear Res Menu</string>
+    <string name="clear_log_menu">clear Log Menu</string>
+    <string name="add_app_to_base_dir">Add AppToBase Dir</string>
+    <string name="help_menu">Help Menu</string>
+
+
+
+
+
+
+
+
+
 </resources>

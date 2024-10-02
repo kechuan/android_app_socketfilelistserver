@@ -16,8 +16,6 @@ import top.fols.box.util.thread.XFixedThreadPool;
 
 public class XHttpServer {
 
-
-
 	private PrintStream ps;//log
 	private int threadPoolMaxSize;//线程池最大长度
 	private XHttpServerDataHandlerInterface.Hander packetProcess;
@@ -111,11 +109,12 @@ public class XHttpServer {
 	private Object syncobj = new Object();
 	public XHttpServer start() throws SocketException, IOException  {
 		if (packetProcess == null) {
-			throw new RuntimeException("data hander for null");
+			throw new RuntimeException("data handler for null");
 		}
 		synchronized (syncobj) {
-			if (this.server != null && this.server.isStart())
-				return this;
+			if (this.server != null && this.server.isStart()) {
+                return this;
+            }
 
 			ServerSocket s;
 			s = new ServerSocket();
@@ -127,6 +126,7 @@ public class XHttpServer {
 			this.serverBindPort = s.getLocalPort();
 
 			this.server = new SocketWeb(this, s, this.threadPoolMaxSize);
+
 			this.server.superIsStop.set(false);
 			this.server.start();
 		}

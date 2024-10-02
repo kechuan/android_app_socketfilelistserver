@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import top.fols.aapp.socketfilelistserver.Config;
 import top.fols.box.io.os.XRandomAccessFileInputStream;
 import top.fols.box.io.os.XRandomAccessFileOutputStream;
 import top.fols.box.lang.XString;
@@ -38,8 +37,8 @@ public class Config {
 	public static final long defDownloadUserUploadSpeedLimit = -1;
 	public static final long defUploadDataToSpeedLimit = -1;
 	public static final boolean defFileUpload = true;
-	public static final boolean defClip = false;
-	public static final boolean defClipp = false;
+//	public static final boolean defClip = false;
+//	public static final boolean defClipp = false;
 	public static final boolean defFileListLatticeMode = true;
 	public static final boolean defOpenAppOpenWebServer= false;
 	public static final String[] defReCentBaseDir = XStaticFixedValue.nullStringArray;
@@ -53,8 +52,8 @@ public class Config {
 	public static final String config_DownloadUserUploadSpeedLimit= "DownloadUserUploadSpeedLimit";
 	public static final String config_UploadDataToSpeedLimit= "UploadDataToSpeedLimit";
 	public static final String config_UploadFile= "UploadFile";
-	public static final String config_Clip = "Clip";
-	public static final String config_Clipp= "Clipp";
+//	public static final String config_Clip = "Clip";
+//	public static final String config_Clipp= "Clipp";
 	public static final String config_DefFileListLatticeMode = "FileListLatticeMode";//默认文件列表模式 false代表 普通 true为宫格
 	public static final String config_OpenAppOpenWebServer= "OpenAppOpenWebServer";
 	public static final String config_ReCentBaseDir = "ReCentBaseDir";
@@ -62,11 +61,14 @@ public class Config {
 
 
 	public static final String config_Version = "Version";
-	public static final double NowVersion = 4.4;
+	public static final String NowVersion = "4.5.1";
 
 	public static void init() throws IOException {
+
+
 		File file = Config.getWorkFile(Config.configFileName);
-		if (file.exists() == false) {
+		if (!file.exists()) {
+
 			file.createNewFile();
 
 			Config.setBaseDir(Config.defBaseDir);
@@ -212,8 +214,9 @@ public class Config {
 		StringBuilder sb = new StringBuilder();
 		if (fill != null) {
 			for (int i = 0;i < fill.length;i++) {
-				if (fill[i] == null)
-					continue;
+				if (fill[i] == null) {
+                    continue;
+                }
 				sb.append(fill[i]).append(XStaticFixedValue.String_NextLineN);
 			}
 		}
@@ -238,8 +241,8 @@ public class Config {
 
 
 
-	public static void setWebPort(int Port) {
-		setConfig(config_WebPort, String.valueOf(Port));
+	public static void setWebPort(int port) {
+		setConfig(config_WebPort, String.valueOf(port));
 	}
 	public static int getWebPort() {
 		return toInt(getConfig(config_WebPort));
@@ -247,21 +250,21 @@ public class Config {
 
 
 
-	public static void setBaseDir(String Dir) {
-		setConfig(config_BaseDir, Dir);
+	public static void setBaseDir(String dir) {
+		setConfig(config_BaseDir, dir);
 	}
 	public static String getBaseDir() {
 		return getConfig(config_BaseDir);
 	}
 
 
-	public static void setVersion(double Version) {
-		setConfig(config_Version, Double.toString(Version));
+	public static void setVersion(double version) {
+		setConfig(config_Version, Double.toString(version));
 	}
 	public static double getVersion() {
 		return  toDouble(getConfig(config_Version));
 	}
-	public static double getNowVersion() {
+	public static String getNowVersion() {
 		return NowVersion;
 	}
 
@@ -277,11 +280,12 @@ public class Config {
 			PropertiesConfig.setProperty(Config.config_Version, String.valueOf(Config.getNowVersion()));
 			getWorkFile(configFileName).delete();
 			OutputStream out = new XRandomAccessFileOutputStream(getWorkFile(configFileName));
-			PropertiesConfig.save(out, "#");
+			PropertiesConfig.store(out, "#");
 
 			out.close();
 			PropertiesConfig.clear();
 		} catch (IOException e) {
+
 			throw new RuntimeException(e);
 		}
 	}
@@ -333,26 +337,18 @@ public class Config {
 	public static final String DirPath = new File(Environment.getExternalStorageDirectory() , "/FolsTop/SocketFileListServer").getAbsolutePath();
 	public static File getWorkDir() {
 		File f = new File(DirPath);
-		if (!f.exists())
-			f.mkdirs();
+		if (!f.exists()) {
+            f.mkdirs();
+        }
 		return f;
 	}
 	public static File getLogDir() {
 		File f = new File(getWorkDir(), "log");
-		if (!f.exists())
-			f.mkdirs();
+		if (!f.exists()) {
+            f.mkdirs();
+        }
 		return f;
 	}
-
-
-
-
-
-
-
-
-
-
 
 	public static interface BaseDirChange {
 		public void change(String newDir);
@@ -366,7 +362,7 @@ public class Config {
 		final EditText et = new EditText(activity);
 		et.setText(config);
 		et.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
-		et.setId(1);
+		et.setId(R.id.addAppToBaseDir);
 		et.setPadding(et.getPaddingLeft() + 20, et.getPaddingTop(), et.getPaddingRight(), et.getPaddingBottom());
 
 		RelativeLayout.LayoutParams layoutparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -377,7 +373,8 @@ public class Config {
 		recentBaseDirlist.setDivider(null);
 		final ArrayList<String> xal = new ArrayList<String>();
 		xal.addAll(Arrays.asList(Config.getReCentBaseDir().toArray(new String[Config.getReCentBaseDir().size()])));
-		ArrayAdapter<String> aa = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1,
+		//new Modify
+		ArrayAdapter<Object> aa = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1,
 													 xal.toArray());
 		recentBaseDirlist.setAdapter(aa);
 		aa.notifyDataSetChanged();
@@ -401,6 +398,9 @@ public class Config {
 					String input = et.getText().toString(); 
 
 					File file = new File(input);
+
+
+
 					if (file.exists() == false) 
 						MainActivity.toast("目标不存在");  
 					else if (file.isDirectory() == false)

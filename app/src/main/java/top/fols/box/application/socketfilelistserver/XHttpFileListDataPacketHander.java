@@ -198,12 +198,13 @@ public class XHttpFileListDataPacketHander implements XHttpServerDataHandlerInte
 
 
 
-	public boolean dealNewData(XHttpServerThread thread, Socket socket,
-							   String protocol,  String url,  double httpVersion,
-							   XURLConnectionMessageHeader ua,
+	@Override
+    public boolean dealNewData(XHttpServerThread thread, Socket socket,
+                               String protocol, String url, double httpVersion,
+                               XURLConnectionMessageHeader ua,
 
-							   XInputStreamFixedLength<InputStream> rowfixed,
-							   XInputStreamLine row,  OutputStream originOus
+                               XInputStreamFixedLength<InputStream> rowfixed,
+                               XInputStreamLine row, OutputStream originOus
 							   ) throws InterruptedException, Exception {			
 		// TODO: Implement this method
 
@@ -216,17 +217,17 @@ public class XHttpFileListDataPacketHander implements XHttpServerDataHandlerInte
 		 */
 		boolean keepAlive = false;
 		if (supportKeepAlive) {
-			String ConnectionValue = ua.get(XHttpServerHeaderValue.paramConnectionKey);
+			String connectionValue = ua.get(XHttpServerHeaderValue.paramConnectionKey);
 			if (httpVersion <= 1.0D) {
-				keepAlive = ConnectionValue == null ?false: ConnectionValue.toLowerCase().equals(XHttpServerHeaderValue.paramConnectionValueKeepAlive);
+				keepAlive = connectionValue == null ?false: connectionValue.toLowerCase().equals(XHttpServerHeaderValue.paramConnectionValueKeepAlive);
 			} else if (httpVersion >= 1.1D) {
-				//System.out.println(ConnectionValue.toLowerCase());
+				//System.out.println(connectionValue.toLowerCase());
 				/*
 				 HTTP1.1中所有连接都被保持，
 				 除非在请求头或响应头中指明要关闭：Connection: Close 
 				 这也就是为什么Connection: Keep-Alive字段再没有意义的原因。
 				 */
-				keepAlive = ConnectionValue == null || !ConnectionValue.toLowerCase().equals(XHttpServerHeaderValue.paramConnectionValueClose);
+				keepAlive = connectionValue == null || !connectionValue.toLowerCase().equals(XHttpServerHeaderValue.paramConnectionValueClose);
 			}
 		}
 
@@ -314,7 +315,8 @@ public class XHttpFileListDataPacketHander implements XHttpServerDataHandlerInte
 				boolean isLocalDirFileExist = (absListdir.isDirectory() && absListdir.exists());//需要列表的目录是否存在
 				System.out.println("[localdir]" + absListdir + ", [needlist]" + isLocalDirFileExist);
 
-				if (isLocalDirFileExist) {/*  listdir */
+				if (isLocalDirFileExist) {
+					/*  listdir */
 					/*
 					 * 处理index.html
 					 * 直接短链接减少资源损耗
@@ -322,7 +324,7 @@ public class XHttpFileListDataPacketHander implements XHttpServerDataHandlerInte
 					keepAlive = false;
 					sp.setCode(200);
 					sp.setState("OK");
-					sp.uaMap().put(XHttpServerHeaderValue.paramConnectionKey, keepAlive ?XHttpServerHeaderValue.paramConnectionValueKeepAlive: XHttpServerHeaderValue.paramConnectionValueClose);
+					sp.uaMap().put(XHttpServerHeaderValue.paramConnectionKey, keepAlive ? XHttpServerHeaderValue.paramConnectionValueKeepAlive: XHttpServerHeaderValue.paramConnectionValueClose);
 
 					sp.w(zr.get("index.part1.html"));
 
@@ -342,13 +344,19 @@ public class XHttpFileListDataPacketHander implements XHttpServerDataHandlerInte
 					String parentDir;
 					parentDir = absRelativeLocalDirFilePath.substring(0, absRelativeLocalDirFilePath.length() - XURL.PATH_SEPARATOR.length());
 					int last = parentDir.lastIndexOf(XURL.PATH_SEPARATOR);
+
 					if (last > -1) {
 						parentDir = parentDir.substring(0, last + XURL.PATH_SEPARATOR.length());
-					} else {
+					}
+
+					else {
 						parentDir = XURL.PATH_SEPARATOR;
 					}
-					if ("".equals(parentDir))
-						parentDir = XURL.PATH_SEPARATOR;
+
+					if ("".equals(parentDir)) {
+                        parentDir = XURL.PATH_SEPARATOR;
+                    }
+
 					parentDir = XURLEncoder.encode(parentDir, (Charset) null);
 					sp.w("	  <a href=\"").w(listDirUrl).w(listDirUrlParamName).w(XURL.PARAM_PROJECT_ASSIGNMENT_SYMBOL).w(parentDir).w(XURL.PARAM_PROJECT_SEPARATOR).w(fileListLatticeModeParamName).w(XURL.PARAM_PROJECT_ASSIGNMENT_SYMBOL).w(fileListLatticeMode).w("\">上一层</a>");
 

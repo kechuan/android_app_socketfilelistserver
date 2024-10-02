@@ -40,10 +40,12 @@ public class XHttpServerThread extends XFixedThreadPool.Run implements XHttpServ
 	
 	public boolean checkInterrupt() throws InterruptedException {
 		// TODO: Implement this method
-		if (socket.isClosed())
-			throw new InterruptedException();
-		if (!socket.isConnected())
-			throw new InterruptedException();
+		if (socket.isClosed()) {
+            throw new InterruptedException();
+        }
+		if (!socket.isConnected()) {
+            throw new InterruptedException();
+        }
 		super.ensureNoRemove();
 		return false;
 	}
@@ -56,11 +58,14 @@ public class XHttpServerThread extends XFixedThreadPool.Run implements XHttpServ
 	private int maxDataHeaderMaxSize;//请求数据包头最大长度
 
 	private static final byte[] getStartsWithHttpProtocol(byte[] line) {
-		if (line == null)
-			return null;
-		for (byte[] bsi:protocolMethodType)
-			if (XArrays.startsWith(line, bsi))
-				return (bsi.length + protocolSplitBytes.length <= line.length &&  line[bsi.length - 1 + protocolSplitBytes.length] == protocolSplitChar) ?bsi: null;
+		if (line == null) {
+            return null;
+        }
+		for (byte[] bsi:protocolMethodType) {
+            if (XArrays.startsWith(line, bsi)) {
+                return (bsi.length + protocolSplitBytes.length <= line.length &&  line[bsi.length - 1 + protocolSplitBytes.length] == protocolSplitChar) ?bsi: null;
+            }
+        }
 		return null;
 	}
 	public XHttpServerThread(XHttpServer server,
@@ -101,8 +106,9 @@ public class XHttpServerThread extends XFixedThreadPool.Run implements XHttpServ
 				linebuf = null;
 				while (true) {
 
-					if ((linebuf = row.readLine(lineSplit, false)) == null)
-						break;
+					if ((linebuf = row.readLine(lineSplit, false)) == null) {
+                        break;
+                    }
 					checkInterrupt() /*  检测该线程是否被停止 */;
 
 					/* 
@@ -113,8 +119,9 @@ public class XHttpServerThread extends XFixedThreadPool.Run implements XHttpServ
 						byte[] protocolbytes = getStartsWithHttpProtocol(linebuf);
 						boolean isProtocol = protocolbytes != null;
 						int lastSplitIndex;
-						if (!isProtocol)
-							continue;
+						if (!isProtocol) {
+                            continue;
+                        }
 						/* 可能读取到XXX / HTTP/1.1了 */
 						read2header = isProtocol;
 						protocol = new String(protocolbytes);
@@ -124,10 +131,13 @@ public class XHttpServerThread extends XFixedThreadPool.Run implements XHttpServ
 										 - (protocolbytes.length + protocolSplitBytes.length)
 										 );
 						//System.out.println(url);
-						if (XArrays.startsWith(linebuf, protocolHttpVersionStart, lastSplitIndex + protocolSplitBytes.length))
-							httpVersion = Double.parseDouble(new String(linebuf, lastSplitIndex + protocolSplitBytes.length + protocolHttpVersionStart.length, linebuf.length - (lastSplitIndex + protocolSplitBytes.length + protocolHttpVersionStart.length)));
-						else
-							httpVersion = 0.0D;
+						if (XArrays.startsWith(linebuf, protocolHttpVersionStart, lastSplitIndex + protocolSplitBytes.length)) {
+                            httpVersion = Double.parseDouble(new String(linebuf, lastSplitIndex + protocolSplitBytes.length + protocolHttpVersionStart.length, linebuf.length - (lastSplitIndex + protocolSplitBytes.length + protocolHttpVersionStart.length)));
+                        }
+
+						else {
+                            httpVersion = 0.0D;
+                        }
 						//System.out.println(httpVersion);
 						protocolbytes = null;
 					} else {
@@ -207,7 +217,7 @@ public class XHttpServerThread extends XFixedThreadPool.Run implements XHttpServ
 //				} catch (Exception e2) {
 //					e2 = null;
 //				}
-			    MainActivity.ps.append(XExceptionTool.StackTraceToString(e));
+			    MainActivity.logStream.append(XExceptionTool.StackTraceToString(e));
 				e.printStackTrace();
 				break top;
 			}
@@ -226,8 +236,9 @@ public class XHttpServerThread extends XFixedThreadPool.Run implements XHttpServ
 		protocol = null;
 		url = null;
 
-		if (ua != null)
-			ua.reset();
+		if (ua != null) {
+            ua.reset();
+        }
 		if (row != null) {
 			row.releaseBuffer();
 			XHttpServerTool.close(row);//输入流

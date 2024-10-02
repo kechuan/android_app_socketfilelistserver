@@ -2,10 +2,12 @@
 
 buildscript {
     repositories {
-        jcenter()
+        google()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.+'
+//        classpath 'com.android.tools.build:gradle:1.+'
+        classpath 'com.android.tools.build:gradle:8.2.2'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -14,6 +16,19 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
+        google()
+        mavenCentral()
     }
+}
+
+//rootProject.buildDir = '../build'
+
+//rootProject.layout.buildDirectory.dir('../build')
+rootProject.layout.buildDirectory.dir('../build')
+
+subprojects {
+//    project.layout.buildDirectory("${rootProject.layout.buildDirectory.get()}/${project.name}")
+//    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+
 }

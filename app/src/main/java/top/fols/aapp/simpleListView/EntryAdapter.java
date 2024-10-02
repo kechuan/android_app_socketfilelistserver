@@ -34,20 +34,20 @@ public class EntryAdapter extends ArrayAdapter<Entry> {
             holder = (ViewHolder) convertView.getTag(); //这里是为了提高listview的运行效率
         }
 		holder.title.setText(objects.get(position).title);
-		setViewVisible(holder.title , objects.get(position).titleshow);
+		setViewVisible(holder.title , objects.get(position).titleShow);
 		
-        holder.title2.setText(objects.get(position).title2);
-		setViewVisible(holder.title2 , objects.get(position).title2show);
+        holder.title2.setText(objects.get(position).subTitle);
+		setViewVisible(holder.title2 , objects.get(position).subTitleShow);
 
 		convertView.setOnClickListener(null);
 		convertView.setOnClickListener(objects.get(position).onClick);
 		
 		holder.checkbox.setOnCheckedChangeListener(null);
-		holder.checkbox.setChecked(objects.get(position).checkbox);
+		holder.checkbox.setChecked(objects.get(position).checkBox);
 		holder.checkbox.setOnCheckedChangeListener(objects.get(position).onChange);
-		setViewVisible(holder.checkbox , objects.get(position).checkboxShow);
+		setViewVisible(holder.checkbox , objects.get(position).checkBoxShow);
 
-		if (!objects.get(position).title2show) {
+		if (!objects.get(position).subTitleShow) {
 			holder.title.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
 			holder.title.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
 			holder.title.setGravity(Gravity.CENTER | Gravity.LEFT);
@@ -60,10 +60,11 @@ public class EntryAdapter extends ArrayAdapter<Entry> {
 		public CheckBox checkbox;
     }
 	private static void setViewVisible(View View, boolean b) {
-		int visibility = b ? View.VISIBLE: View.INVISIBLE;
+		//不应该通过类实例访问静态成员  VIEW.VISIBLE -> android.view.View.VISIBLE
+		int visibility = b ? android.view.View.VISIBLE : android.view.View.INVISIBLE;
 		View.setVisibility(visibility);
 	}
-	public static final int FILL_PARENT = ViewGroup.LayoutParams.FILL_PARENT;
+
 	public static final int MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT;
 	public static final int WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT;
 

@@ -13,7 +13,7 @@
 
 		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
+			android:layout_height="wrap_content"
 			android:orientation="vertical"
 			
 			>
@@ -42,7 +42,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:orientation="vertical"
-					android:paddingLeft="4dp"
+					android:paddingHorizontal="4dp"
 					android:background="@drawable/card_center_bg">
 
 					<LinearLayout
@@ -57,9 +57,8 @@
 
 							<ImageView
 								android:layout_width="32dp"
-								android:layout_height="32dp"
-								android:paddingTop="8dp"
-								android:paddingLeft="8dp"
+								android:layout_height="match_parent"
+								android:padding="4dp"
 								android:src="@drawable/ic_cloud_status_off"
 								android:id="@+id/main_cloud_icon"/>
 
@@ -71,14 +70,15 @@
 								android:text="@string/off"
 								android:textColor="@color/color_text_value"
 								android:textSize="14sp"
-								android:paddingLeft="14dp"
+								android:paddingStart="14dp"
 								android:layout_weight="15"/>
 
 							<Switch
 								android:layout_width="wrap_content"
 								android:layout_height="match_parent"
 								android:id="@+id/main_cloud_switch"
-								android:layout_weight="1"/>
+								android:layout_weight="1"
+								/>
 
 						</LinearLayout>
 
@@ -91,13 +91,13 @@
 					android:layout_height="wrap_content"
 					android:background="@drawable/card_center_bg"
 					android:orientation="horizontal"
-					android:paddingLeft="4dp">
+					android:paddingHorizontal="4dp">
 
 					<ImageView
 						android:layout_width="32dp"
-						android:layout_height="32dp"
-						android:paddingTop="8dp"
-						android:paddingLeft="8dp"
+						android:layout_height="match_parent"
+						android:padding="4dp"
+
 						android:src="@drawable/ic_link"/>
 
 					<TextView
@@ -116,13 +116,12 @@
 					android:layout_height="wrap_content"
 					android:background="@drawable/card_center_bg"
 					android:orientation="horizontal"
-					android:paddingLeft="4dp">
+					android:padding="4dp">
 
 					<ImageView
 						android:layout_width="32dp"
-						android:layout_height="32dp"
-						android:paddingTop="8dp"
-						android:paddingLeft="8dp"
+						android:layout_height="match_parent"
+						android:padding="4dp"
 						android:src="@drawable/ic_folder"/>
 
 					<TextView
@@ -153,23 +152,22 @@
 					android:background="@drawable/card_top_bg"
 					android:gravity="center_vertical"
 					android:paddingLeft="8dp"
-					android:text="@string/addres"
+					android:text="@string/address"
 					android:textColor="@color/color_text_title"
 					android:textSize="14sp"
-					android:textStyle="bold"/>
+					android:textStyle="bold" />
 
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:background="@drawable/card_center_bg"
 					android:orientation="horizontal"
-					android:paddingLeft="4dp">
+					android:paddingHorizontal="4dp">
 
 					<ImageView
 						android:layout_width="32dp"
-						android:layout_height="32dp"
-						android:paddingTop="8dp"
-						android:paddingLeft="8dp"
+						android:layout_height="match_parent"
+						android:padding="4dp"
 						android:src="@drawable/ic_filter_center_focus"
 						android:id="@+id/main_ip_v4_icon"/>
 
@@ -190,13 +188,12 @@
 					android:layout_height="wrap_content"
 					android:background="@drawable/card_center_bg"
 					android:orientation="horizontal"
-					android:paddingLeft="4dp">
+					android:paddingHorizontal="4dp">
 
 					<ImageView
 						android:layout_width="32dp"
-						android:layout_height="32dp"
-						android:paddingTop="8dp"
-						android:paddingLeft="8dp"
+						android:layout_height="match_parent"
+						android:padding="4dp"
 						android:src="@drawable/ic_filter_center_focus"
 						android:id="@+id/main_ip_v6_icon"/>
 
@@ -239,13 +236,12 @@
 					android:layout_height="wrap_content"
 					android:background="@drawable/card_center_bg"
 					android:orientation="horizontal"
-					android:paddingLeft="4dp">
+					android:paddingHorizontal="4dp">
 
 					<ImageView
 						android:layout_width="32dp"
-						android:layout_height="32dp"
-						android:paddingTop="8dp"
-						android:paddingLeft="8dp"
+						android:layout_height="match_parent"
+						android:padding="4dp"
 						android:src="@drawable/ic_upload"/>
 
 					<TextView
@@ -265,13 +261,12 @@
 					android:layout_height="wrap_content"
 					android:background="@drawable/card_center_bg"
 					android:orientation="horizontal"
-					android:paddingLeft="4dp">
+					android:paddingHorizontal="4dp">
 
 					<ImageView
 						android:layout_width="32dp"
-						android:layout_height="32dp"
-						android:paddingTop="8dp"
-						android:paddingLeft="8dp"
+						android:layout_height="match_parent"
+						android:padding="4dp"
 						android:src="@drawable/ic_download"/>
 
 					<TextView
@@ -313,13 +308,12 @@
 					android:layout_height="wrap_content"
 					android:background="@drawable/card_center_bg"
 					android:orientation="horizontal"
-					android:paddingLeft="4dp">
+					android:paddingHorizontal="4dp">
 
 					<ImageView
 						android:layout_width="32dp"
-						android:layout_height="32dp"
-						android:paddingTop="8dp"
-						android:paddingLeft="8dp"
+						android:layout_height="match_parent"
+						android:padding="4dp"
 						android:src="@drawable/ic_log"/>
 
 					<TextView

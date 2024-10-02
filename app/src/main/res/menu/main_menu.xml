@@ -2,59 +2,58 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<item
-		android:id="@+id/settingMenu"  
-		android:title="应用设置"
-	/>    
+		android:id="@+id/settingMenu"
+		android:title="@string/save_setting" />
+<!--		android:title="@string/应用设置"-->
 
 	<item
 		android:id="@+id/copyV4linkMenu"  
-		android:title="复制链接"
+		android:title="@string/copy_link"
+		android:tag="settingMenu"
 	/>
 
 	<item
 		android:id="@+id/shareV4linkMenu"  
-		android:title="分享链接"
+		android:title="@string/share_link"
 	/>
 
 	<item
-		android:id="@+id/thisPhoneV4LocalAddresMenu"  
-		android:title="所有本设备局域网地址"
+		android:id="@+id/thisPhoneV4LocalAddressMenu"
+		android:title="@string/all_lan_device_address"
 	/>
 
 
 	<item
 		android:id="@+id/copyV6linkMenu"  
-		android:title="复制IPV6链接"
+		android:title="@string/copy_ipv6_link_menu"
 	/>
 	<item
 		android:id="@+id/shareV6linkMenu"  
-		android:title="分享IPV6链接"
+		android:title="@string/share_ipv6_link_menu"
 	/>
 	<item
-		android:id="@+id/thisPhoneV6LocalAddresMenu"  
-		android:title="所有本设备IPV6局域网地址"
+		android:id="@+id/thisPhoneV6LocalAddressMenu"
+		android:title="@string/this_phone_IPV6_local_address_menu"
 	/>
 
-
-
 	<item
-		android:id="@+id/clearResMeun"  
-		android:title="重新写入资源包"
+		android:id="@+id/clearResMenu"
+		android:title="@string/clear_res_menu"
 	/>
 
 	<item  
 		android:id="@+id/clearLogMenu"
-		android:title="清空日志"
+		android:title="@string/clear_log_menu"
 	/>    
 	
 	<item
 		android:id="@+id/addAppToBaseDir"
-		android:title="添加本应用到基础目录"
+		android:title="@string/add_app_to_base_dir"
     />
 
 	<item
 		android:id="@+id/helpMenu"
-		android:title="帮助"
+		android:title="@string/help_menu"
     />
 </menu>
 
